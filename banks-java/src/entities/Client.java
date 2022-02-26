@@ -8,13 +8,13 @@ public class Client {
     private String lastName;
     private String address;
     private String passport;
-    private ArrayList<BankAccount> listAccounts;
+    private List<BankAccount> listAccounts;
     public Client(String firstName, String lastName)
     {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = "";
-        this.passport = "";
+        this.address = null;
+        this.passport = null;
         this.listAccounts = new ArrayList<BankAccount>();
     }
 
@@ -59,15 +59,15 @@ public class Client {
         this.passport = passport;
     }
 
-    public ArrayList<BankAccount> getListAccounts() {
+    public List<BankAccount> getListAccounts() {
         return listAccounts;
     }
 
-    public void setListAccounts(ArrayList<BankAccount> listAccounts) {
+    public void setListAccounts(List<BankAccount> listAccounts) {
         this.listAccounts = listAccounts;
     }
 
-    public ArrayList<BankAccount> addInListAccount(BankAccount bankAccount) {
+    public List<BankAccount> addInListAccount(BankAccount bankAccount) {
         listAccounts.add(bankAccount);
         return listAccounts;
     }

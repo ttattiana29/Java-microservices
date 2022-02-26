@@ -6,14 +6,15 @@ import bankAccounts.Debit;
 import bankAccounts.Deposit;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 public class CentralBank {
     public final int countMonth = 30;
     private String name;
-    private ArrayList<Bank> banks;
-    private ArrayList<Transaction> transactions;
+    private List<Bank> banks;
+    private List<Transaction> transactions;
 
     public CentralBank(String name){
         this.name = name;
@@ -29,29 +30,25 @@ public class CentralBank {
         this.name = name;
     }
 
-    public ArrayList<Bank> getBanks() {
+    public List<Bank> getBanks() {
         return banks;
     }
 
-    public void setBanks(ArrayList<Bank> banks) {
+    public void setBanks(List<Bank> banks) {
         this.banks = banks;
     }
 
-    public ArrayList<Transaction> getTransactions() {
+    public List<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(ArrayList<Transaction> transactions) {
+    public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
 
-    public Bank addBank(String name,
-                        double percentDebit,
-                        double percentCredit,
-                        double percentDeposit,
-                        double limitDebit,
-                        double limitCredit,
-                        double limitDeposit) {
+    public Bank addBank(String name, double percentDebit,
+                        double percentCredit, double percentDeposit,
+                        double limitDebit, double limitCredit, double limitDeposit) {
         Bank bank = new Bank(name, percentDebit, percentCredit, percentDeposit, limitDebit, limitCredit, limitDeposit);
         banks.add(bank);
         return bank;
@@ -103,11 +100,9 @@ public class CentralBank {
         bank.getClients().add(client);
     }
 
-    public Debit createDebitAccountForClient(Bank bank,
-                                             Client client,
-                                             double money) {
+    public Debit createDebitAccountForClient(Bank bank, Client client, double money) {
         double limit;
-        if (!Objects.equals(client.getPassport(), "")) {
+        if (!Objects.equals(client.getPassport(), null)) {
             limit = Integer.MAX_VALUE;
         }
         else {
@@ -119,11 +114,9 @@ public class CentralBank {
         return debit;
     }
 
-    public Deposit createDepositAccountForClient(Bank bank,
-                                                 Client client,
-                                                 double money) {
+    public Deposit createDepositAccountForClient(Bank bank, Client client, double money) {
         double limit;
-        if(!Objects.equals(client.getPassport(), "")) {
+        if(!Objects.equals(client.getPassport(), null)) {
             limit = Integer.MAX_VALUE;
         }
         else {
@@ -136,14 +129,11 @@ public class CentralBank {
         return deposit;
     }
 
-    public Credit createCreditAccountForClient(Bank bank,
-                                               Client client,
-                                               double money) {
+    public Credit createCreditAccountForClient(Bank bank, Client client, double money) {
         double limit;
-        if (!Objects.equals(client.getPassport(), "")) {
+        if (!Objects.equals(client.getPassport(), null)) {
             limit = Integer.MAX_VALUE;
-        }
-        else {
+        } else {
             limit = bank.getLimitCredit();
         }
 
@@ -153,7 +143,7 @@ public class CentralBank {
         return credit;
     }
 
-    public ArrayList<Bank> allCountPercent(int days) {
+    public List<Bank> allCountPercent(int days) {
         int amountMonth = days / countMonth;
         for (Bank bank : banks) {
             bank.countPercent(amountMonth);

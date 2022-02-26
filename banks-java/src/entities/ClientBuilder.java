@@ -1,13 +1,14 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ClientBuilder {
     private String firstName;
     private String lastName;
     private String address;
     private String passport;
-    private ArrayList<BankAccount> listAccounts;
+    private List<BankAccount> listAccounts;
     public ClientBuilder addFirstName(String firstName)
     {
         this.firstName = firstName;
@@ -32,7 +33,7 @@ public class ClientBuilder {
         return this;
     }
 
-    public ClientBuilder addListAccounts(ArrayList<BankAccount> bankAccounts)
+    public ClientBuilder addListAccounts(List<BankAccount> bankAccounts)
     {
         this.listAccounts = bankAccounts;
         return this;

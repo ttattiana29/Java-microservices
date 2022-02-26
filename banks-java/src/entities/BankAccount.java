@@ -69,12 +69,10 @@ public abstract class BankAccount {
 
     public Transaction withdrawCash(Bank bank, Client client, BankAccount bankAccount, double money) throws BankException {
         Transaction transaction = new Transaction(bankAccount, null, money);
-        //if (bank.Clients.FirstOrDefault(clients => clients == client) == null)
         if (bank.getClients().stream().filter(anyClient -> anyClient == client).findFirst() == null) {
             throw new BankException("Sorry, client not found this bank");
         }
 
-        //if (client.GetListAccount().FirstOrDefault(bankAccounts => bankAccounts == bankAccount) == null) {
         if (client.getListAccounts().stream().filter(anyBankAccount -> anyBankAccount == bankAccount).findFirst() == null) {
             throw new BankException("Sorry, client don't have this bank account");
         }
@@ -84,12 +82,10 @@ public abstract class BankAccount {
     }
 
     public void topUpCash(Bank bank, Client client, BankAccount bankAccount, double money) throws BankException {
-        //if (bank.Clients.FirstOrDefault(clients => clients == client) == null)
         if (bank.getClients().stream().filter(anyClient -> anyClient == client) == null) {
             throw new BankException("Sorry, client not found this bank");
         }
 
-        //if (client.GetListAccount().FirstOrDefault(bankAccounts => bankAccounts == bankAccount) == null)
         if (client.getListAccounts().stream().filter(anyBankAccount -> anyBankAccount == bankAccount) == null) {
             throw new BankException("Sorry, client don't have this bank account");
         }

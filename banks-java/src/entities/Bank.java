@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Bank {
@@ -12,17 +13,12 @@ public class Bank {
     private double limitDebit;
     private double limitCredit;
     private double limitDeposit;
-    private ArrayList<Client> clients;
-    private ArrayList<BankAccount> bankAccounts;
+    private List<Client> clients;
+    private List<BankAccount> bankAccounts;
 
-    public Bank(String name,
-                double percentDebit,
-                double percentCredit,
-                double percentDeposit,
-                double limitDebit,
-                double limitCredit,
-                double limitDeposit)
-    {
+    public Bank(String name, double percentDebit,
+                double percentCredit, double percentDeposit,
+                double limitDebit, double limitCredit, double limitDeposit) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.percentDebit = percentDebit;
@@ -99,19 +95,19 @@ public class Bank {
         this.limitDeposit = limitDeposit;
     }
 
-    public ArrayList<Client> getClients() {
+    public List<Client> getClients() {
         return clients;
     }
 
-    public void setClients(ArrayList<Client> clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
     }
 
-    public ArrayList<BankAccount> getBankAccounts() {
+    public List<BankAccount> getBankAccounts() {
         return bankAccounts;
     }
 
-    public void setBankAccounts(ArrayList<BankAccount> bankAccounts) {
+    public void setBankAccounts(List<BankAccount> bankAccounts) {
         this.bankAccounts = bankAccounts;
     }
 
