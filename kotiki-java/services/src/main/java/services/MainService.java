@@ -14,27 +14,24 @@ public class MainService {
     private KotikDao kotikiDao = new KotikDao();
     private FriendDao friendsDao = new FriendDao();
 
-    public MainService() {
-    }
-
     public Owner findOwner(int id) {
         return ownersDao.findById(id);
+    }
+
+    public List<Owner> findAllOwners() {
+        return ownersDao.findAll();
     }
 
     public void saveOwner(Owner owner) {
         ownersDao.save(owner);
     }
 
-    public void deleteUser(Owner owner) {
+    public void deleteOwner(Owner owner) {
         ownersDao.delete(owner);
     }
 
     public void updateOwner(Owner owner) {
         ownersDao.update(owner);
-    }
-
-    public List<Owner> findAllOwners() {
-        return ownersDao.findAll();
     }
 
     public Kotik findKotikById(int id) {
@@ -75,15 +72,15 @@ public class MainService {
         friendsDao.save(friend);
     }
 
-    public void deleteUser(Friend friend) {
+    public void deleteFriend(Friend friend) {
         friendsDao.delete(friend);
     }
 
-    public void updateOwner(Friend friend) {
+    public void updateFriend(Friend friend) {
         friendsDao.update(friend);
     }
 
-    public List<Friend> findAllFRiends() {
+    public List<Friend> findAllFriends() {
         return friendsDao.findAll();
     }
 

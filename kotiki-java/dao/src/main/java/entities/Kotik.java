@@ -1,17 +1,15 @@
 package entities;
 
-import jdk.jfr.Timespan;
+import tools.KotikiException;
 
 import javax.persistence.*;
-import java.security.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table (name = "kotiki")
-public class Kotik {
+public class Kotik{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,11 +22,11 @@ public class Kotik {
     private Color color;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "owner")
     private Owner owner;
 
-    /*@OneToMany(mappedBy = "kotik", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Kotik> kotikiFriends;*/
+    @OneToMany(mappedBy = "kotik", orphanRemoval = true)
+    private final List<Friend> friends = new ArrayList<>();
 
     public Kotik() {
     }
@@ -40,6 +38,22 @@ public class Kotik {
         this.breed = breed;
         this.color = color;
         //this.ownerId = ownerId;
+    }
+
+    public Friend addFriend(Kotik kotik) throws KotikiException {
+        if(kotik == null) {
+            throw new KotikiException("Sorry not found kotik");
+        }
+        if(kotik == this) {
+            throw new KotikiException("Sorry you can't be frendship with yourself I must to say your owner about your schiza");
+        }
+        Friend newFriend = new Friend(this, kotik);
+        friends.add(newFriend);
+        return newFriend;
+    }
+
+    public void removeFriends(Friend friend) {
+        friends.remove(friend);
     }
 
     public Integer getId() {

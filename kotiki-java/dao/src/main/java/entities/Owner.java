@@ -1,15 +1,13 @@
 package entities;
 
 import javax.persistence.*;
-import java.security.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table (name = "owners")
-public class Owner {
+public class Owner{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -42,6 +40,10 @@ public class Owner {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -60,9 +62,5 @@ public class Owner {
 
     public List<Kotik> getKotiki() {
         return kotiki;
-    }
-
-    public void setOwners(List<Kotik> autos) {
-        this.kotiki = autos;
     }
 }
