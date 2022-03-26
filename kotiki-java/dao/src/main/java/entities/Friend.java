@@ -13,7 +13,7 @@ public class Friend{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kotik")
     private Kotik kotik;
     @OneToOne
