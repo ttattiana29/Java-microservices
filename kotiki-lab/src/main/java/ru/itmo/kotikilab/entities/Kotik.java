@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.itmo.kotikilab.tools.KotikiException;
+import ru.itmo.kotikilab.wrapper.KotikWrap;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -36,12 +37,12 @@ public class Kotik{
     private final List<Friend> friends = new ArrayList<>();
 
     public Kotik(String name, LocalDate birthday, String breed,
-                 Color color) {
+                 Color color, Owner owner) {
         this.name = name;
         this.birthday = birthday;
         this.breed = breed;
         this.color = color;
-        //this.ownerId = ownerId;
+        this.owner = owner;
     }
 
     public Friend addFriend(Kotik kotik) throws KotikiException {
@@ -106,6 +107,10 @@ public class Kotik{
 
     public void setOwnerId(Owner owner) {
         this.owner = owner;
+    }
+
+    public KotikWrap getKotikWrap(){
+        return new KotikWrap(id, name, birthday, breed, color.ordinal(), owner.getId());
     }
 
 }
