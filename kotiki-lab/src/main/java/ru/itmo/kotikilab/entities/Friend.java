@@ -3,6 +3,7 @@ package ru.itmo.kotikilab.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itmo.kotikilab.wrapper.FriendWrap;
 
 import javax.persistence.*;
 
@@ -49,5 +50,9 @@ public class Friend{
 
     public void setFriend(Kotik friend) {
         this.friend = friend;
+    }
+
+    public FriendWrap getFriendWrap(){
+        return new FriendWrap(id, kotik.getId(), friend.getId());
     }
 }

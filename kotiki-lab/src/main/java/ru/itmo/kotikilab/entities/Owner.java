@@ -3,6 +3,7 @@ package ru.itmo.kotikilab.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itmo.kotikilab.wrapper.OwnerWrap;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -66,5 +67,17 @@ public class Owner{
 
     public List<Kotik> getKotiki() {
         return kotiki;
+    }
+
+    public List<Integer> getKotikiId(){
+        List<Integer> kotikiId = new ArrayList<>();
+        for (Kotik item: kotiki) {
+            kotikiId.add(item.getId());
+        }
+        return kotikiId;
+    }
+
+    public OwnerWrap getOwnerWrap(){
+        return new OwnerWrap(id, name, birthday, this.getKotikiId());
     }
 }
