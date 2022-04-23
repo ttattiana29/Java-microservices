@@ -22,13 +22,18 @@ public class Owner{
     @Column(name = "name")
     private String name;
     private LocalDate birthday;
-
+    private String username;
+    private String password;
+    private String role;
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Kotik> kotiki;
 
-    public Owner(String name, LocalDate birthday) {
+    public Owner(String name, LocalDate birthday, String username, String password, String role) {
         this.name = name;
         this.birthday = birthday;
+        this.username = username;
+        this.password = password;
+        this.role = role;
         kotiki = new ArrayList<>();
     }
 
@@ -76,8 +81,45 @@ public class Owner{
         }
         return kotikiId;
     }
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setKotiki(List<Kotik> kotiki) {
+        this.kotiki = kotiki;
+    }
+
 
     public OwnerWrap getOwnerWrap(){
-        return new OwnerWrap(id, name, birthday, this.getKotikiId());
+        return new OwnerWrap(id, name, birthday, username, password, role, this.getKotikiId());
     }
 }
