@@ -6,11 +6,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface MainService {
-    void createOwner(String name, String date);
+    void createOwner(String name, String date, String username, String password, String role);
     Owner findOwnerById(int id);
+    Owner findOwnerByUsername(String username);
     Owner saveOwner(Owner owner);
     void deleteOwner(Owner owner);
     List<Owner> findAllOwners();
+    Role saveRole(Role role);
 
     Color getColor(int color) throws Exception;
     Kotik createKotik(String name, String date, String breed, int color, int ownerId) throws Exception;

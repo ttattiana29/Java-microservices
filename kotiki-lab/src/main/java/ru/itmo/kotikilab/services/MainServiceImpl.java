@@ -27,12 +27,12 @@ public class MainServiceImpl implements MainService {
     private final KotikRepository kotikRepo;
     private final OwnerRepository ownerRepo;
     private final FriendRepository friendRepo;
-    private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepo;
 
     @Override
-    public void createOwner(String name, String date){
+    public void createOwner(String name, String date, String username, String password, String role){
         log.info("Create owner");
-        Owner owner = new Owner(name, LocalDate.parse(date));
+        Owner owner = new Owner(name, LocalDate.parse(date), username, password, role);
         ownerRepo.save(owner);
     }
 
@@ -40,6 +40,12 @@ public class MainServiceImpl implements MainService {
     public Owner findOwnerById(int id) {
         log.info("Finding owner by id");
         return ownerRepo.getById(id);
+    }
+
+    @Override
+    public Owner findOwnerByUsername(String username) {
+        log.info("Finding owner by username");
+        return ownerRepo.findByUsername(username);
     }
 
     @Override
@@ -68,6 +74,12 @@ public class MainServiceImpl implements MainService {
             }
         }
         throw new Exception("Error");
+    }
+
+    @Override
+    public Role saveRole(Role role) {
+        log.info("Saving new role");
+        return roleRepo.save(role);
     }
 
     @Override
